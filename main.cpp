@@ -7,17 +7,20 @@ string inventory[8];
 int turns = 0;
 int fish = 0;
 int PlayerHealth = 200;
-
+bool hasVisited[] = { false, false, false, false, false, false, false, false, false, false, false};
+int room = 1;
 
 //function decleration
 void shop();
 void moves();
 void BattleSim();
+void HELP();
+void map();
+
 
 int main() {
 
 	srand(time(NULL)); // seeds rand() *keep this at the top of main
-	int room = 1;
 	string input = "beef"; //dummy value
 	cout << endl << "____________________________________________________________________________" << endl << endl;
 	cout <<"                           WELCOME TO CAT QUEST" <<endl << endl;
@@ -33,25 +36,35 @@ int main() {
 
 	while (input != "quit" && turns < 30) { // game loop
 		//STUFF HERE RUNS EVERY TURN
-
+		
+		if (input == "help")
+			HELP();
+		if (input == "map")
+			map();
 		
 		switch(room) {
 			case 1:
-				cout << "____________________________________________________________________________" << endl;
-				cout << "A silly orange cat with a malicious smile, looks out the window awaiting to reenact his 'well-thought-out' plan" << endl;
-				cout << "\"It's been a year since I fooled this human to let me take over his home.\"" << endl;
-				cout << "\"It's been nice, all I have to do is lay here on this bed and eat. THE TYPE OF LIFE DESERVING OF A KING LIKE MYSELF.\"" << endl;
-				cout << "\"Is what I would say if I didn't have to eat this disgusting food everyday.\"" << endl;
-				cout << "\"This is why I have crafted a masterful plan to STEAL FROM THE FISH VENDOR.\"" << endl;
-				cout << "\"As the human who feeds me leaves, I push my yarn ball between the door, stoping the door from shutting\"" << endl;
-				cout << "\"An adventure awaits, it's time to venture north\"" << endl;
+				if (hasVisited[1] == false) {
+					cout << "____________________________________________________________________________" << endl;
+					cout << "A silly orange cat with a malicious smile, looks out the window awaiting to reenact his 'well-thought-out' plan" << endl;
+					cout << "\"It's been a year since I fooled this human to let me take over his home.\"" << endl;
+					cout << "\"It's been nice, all I have to do is lay here on this bed and eat. THE TYPE OF LIFE DESERVING OF A KING LIKE MYSELF.\"" << endl;
+					cout << "\"Is what I would say if I didn't have to eat this disgusting food everyday.\"" << endl;
+					cout << "\"This is why I have crafted a masterful plan to STEAL FROM THE FISH VENDOR.\"" << endl;
+					cout << "\"As the human who feeds me leaves, I push my yarn ball between the door, stoping the door from shutting\"" << endl;
+					cout << "\"An adventure awaits, it's time to venture north\"" << endl;
+				}
+				else {
+					cout << "You stride back into the house." << endl << "After taking a quick power nap your full of energy again." << endl << "PATHS: NORTH" << endl;
+				}
 				moves();
 				// getline lets you handle user input with spaces (like "get sword")
 				getline(cin, input);
 				
-				if (input == "north" || input.compare("go north") == 0)
+				if (input == "north" || input.compare("go north") == 0) {
 					room = 2;
-			
+					hasVisited[1] = true;
+				}
 				break;
 
 
@@ -194,6 +207,10 @@ int main() {
 				if (input == "south" || input.compare("go south") == 0)
 					room = 9;
 				break;
+			default:
+				cout << "sorry, that wasn't and option." << endl << "type 'help' for help" << endl;
+				cin >> input;
+
 
 		}//end of switch staement
 
@@ -257,7 +274,7 @@ void moves() {
 	cout << "you have " << 31 - turns << " minutes to get back home before you're caught" << endl;
 }
 void BattleSim() {
-	int MonsterHealth = 20; // local variale: this can only be seen and used by BattleSim
+	int MonsterHealth = 40; // local variale: this can only be seen and used by BattleSim
 	int damage;
 	char dummy;
 	cout << endl << endl << "------------------ BATTLE BEGINS------------------" << endl;
@@ -280,9 +297,10 @@ void BattleSim() {
 
 		if (PlayerHealth > 0)
 			cout << "You're health is now: " << PlayerHealth << endl;
-		else
+		else {
 			cout << "You wake up in a daze, \"Good Morning Little Fluff Shiny Sparkels Jr.\"" << endl;
 			cout << "You realize that it had all been a dream." << endl;
+		}
 
 		if (MonsterHealth > 0)
 			cout << "The alligators health is now : " << MonsterHealth << endl;
@@ -304,4 +322,122 @@ void BattleSim() {
 	else
 		cout << "you lost GAME OVER" << endl;
 	cout << "---------------------------END OF BATTLE------------------------------" << endl << endl;
+}
+
+void HELP() {
+	string type;
+	cout << endl << "-------------------------------------" << endl;
+	cout << "DIRECTIONS:" << endl << "north" << endl << "south" << endl << "north" << endl << "east" << endl;
+	cout << endl << "-------------------------------------" << endl;
+	cout << "PLAYER HEALTH: " << PlayerHealth << endl;
+	cout << endl << "-------------------------------------" << endl;
+	cout << "Type 'return' to go back to the game" << endl;
+	cin >> type;
+	if (type == "return") {
+		return;
+	}
+}
+
+void map() {
+	string input = "potato";
+	while (input != "back") {
+		switch(room) {
+		case 1:
+			cout << endl << "                   MAP                      " << endl;
+			cout << "                                                                                               " << endl;
+			cout << "                      __________________________              " << endl;
+			cout << "                      |                         |                      " << endl;
+			cout << "                      |_________________________|                      " << endl;
+			cout << "                                       |       |               _______       " << endl;
+			cout << "                                       |_______|_______________|______|        " << endl;
+			cout << "                                       |       |                     |        " << endl;
+			cout << "__________                             |       |_____________________|      " << endl;
+			cout << "          \\_________                   |       |                   " << endl;
+			cout << "                     \\ ________________|_______|                       " << endl;
+			cout << "                                 |      |       |___                " << endl;
+			cout << "                                 |      |       |   |                      " << endl;
+			cout << "                                 |      |       |___|                       " << endl;
+			cout << "                                 |______|_______|                        " << endl;
+			cout << "                              ___|        ______                          " << endl;
+			cout << "                      _______/         //   *   \\\\                       " << endl;
+			cout << "       ______________/                //_________\\\\                   " << endl;
+			cout << "______/                              //|   ___    |\\\\                            " << endl;
+			cout << "                                       |   |  |   |               " << endl;
+			cout << "                                       |___|__|___|             " << endl;
+			cin >> input;
+			break;
+		case 2:
+			cout << endl << "                   MAP                      " << endl;
+			cout << "                                                                                               " << endl;
+			cout << "                      __________________________              " << endl;
+			cout << "                      |                         |                      " << endl;
+			cout << "                      |_________________________|                      " << endl;
+			cout << "                                       |       |               _______       " << endl;
+			cout << "                                       |_______|_______________|______|        " << endl;
+			cout << "                                       |       |                     |        " << endl;
+			cout << "__________                             |       |_____________________|      " << endl;
+			cout << "          \\_________                   |       |                   " << endl;
+			cout << "                     \\ ________________|_______|                       " << endl;
+			cout << "                                 |      |       |___                " << endl;
+			cout << "                                 |      |   *   |   |                      " << endl;
+			cout << "                                 |      |       |___|                       " << endl;
+			cout << "                                 |______|_______|                        " << endl;
+			cout << "                              ___|        ______                          " << endl;
+			cout << "                      _______/         //       \\\\                       " << endl;
+			cout << "       ______________/                //_________\\\\                   " << endl;
+			cout << "______/                              //|   ___    |\\\\                            " << endl;
+			cout << "                                       |   |  |   |               " << endl;
+			cout << "                                       |___|__|___|             " << endl;
+			cin >> input;
+			break;
+		case 3:
+			cout << endl << "                   MAP                      " << endl;
+			cout << "                                                                                               " << endl;
+			cout << "                      __________________________              " << endl;
+			cout << "                      |                         |                      " << endl;
+			cout << "                      |_________________________|                      " << endl;
+			cout << "                                       |       |               _______       " << endl;
+			cout << "                                       |_______|_______________|______|        " << endl;
+			cout << "                                       |       |                     |        " << endl;
+			cout << "__________                             |       |_____________________|      " << endl;
+			cout << "          \\_________                   |       |                   " << endl;
+			cout << "                     \\ ________________|_______|                       " << endl;
+			cout << "                                 |      |       |___                " << endl;
+			cout << "                                 |   *  |       |   |                      " << endl;
+			cout << "                                 |      |       |___|                       " << endl;
+			cout << "                                 |______|_______|                        " << endl;
+			cout << "                              ___|        ______                          " << endl;
+			cout << "                      _______/         //       \\\\                       " << endl;
+			cout << "       ______________/                //_________\\\\                   " << endl;
+			cout << "______/                              //|   ___    |\\\\                            " << endl;
+			cout << "                                       |   |  |   |               " << endl;
+			cout << "                                       |___|__|___|             " << endl;
+			cin >> input;
+			break;
+		case 4:
+			cout << endl << "                   MAP                      " << endl;
+			cout << "                                                                                               " << endl;
+			cout << "                      __________________________              " << endl;
+			cout << "                      |                         |                      " << endl;
+			cout << "                      |_________________________|                      " << endl;
+			cout << "                                       |       |               _______       " << endl;
+			cout << "                                       |_______|_______________|______|        " << endl;
+			cout << "                                       |       |                     |        " << endl;
+			cout << "__________                             |       |_____________________|      " << endl;
+			cout << "          \\_________                   |       |                   " << endl;
+			cout << "                     \\ ________________|_______|                       " << endl;
+			cout << "                                 |      |       |___                " << endl;
+			cout << "                                 |      |       |   |                      " << endl;
+			cout << "                    **           |      |       |___|                       " << endl;
+			cout << "                                 |______|_______|                        " << endl;
+			cout << "                              ___|        ______                          " << endl;
+			cout << "                      _______/         //       \\\\                       " << endl;
+			cout << "       ______________/                //_________\\\\                   " << endl;
+			cout << "______/                              //|   ___    |\\\\                            " << endl;
+			cout << "                                       |   |  |   |               " << endl;
+			cout << "                                       |___|__|___|             " << endl;
+			cin >> input;
+			break;
+		}
+	}
 }

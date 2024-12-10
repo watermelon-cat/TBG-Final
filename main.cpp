@@ -3,13 +3,14 @@
 using namespace std;
 
 //global variables
-string inventory[9];
+string inventory[10];
 // 0 is fish from shop
 // 1 is a bat
 // 2 is C4
 // 3,4,5,6 are all fish
 // 7 is the fish from the car
 // 8 is cardboard armor
+// 9 is the golden key
 
 int turns = 0;
 int fish = 0;
@@ -69,7 +70,7 @@ int main() {
 				getline(cin, input);
 				
 				if (input == "north" || input.compare("go north") == 0) {
-					room = 2;
+					room = 4;
 					hasVisited[1] = true;
 
 				}
@@ -99,11 +100,11 @@ int main() {
 
 
 			case 3:
-				if (hasVisited[1] == false) {
+				if (hasVisited[3] == false) {
 					cout << "____________________________________________________________________________" << endl;
 					cout << "As you near the bench you notice a gigantic lake further west." << endl;
-					cout << "You decide to climb the bench to get a better view of the lake and notice a shine about 10 meters out." << endl;
-					cout << "You think \"How hard can it be to swim\" and get ready to jump in, but you then notice a warning sign about alligators in the water." << endl;
+					cout << "You decide to climb the bench to get a better view of the lake and notice a shine in the water about 10 meters out." << endl;
+					cout << "Your curiousity starts the get the better of you and you get ready to jump in, but you then notice a warning sign saying \"ALLIGATOR INFESTED WATER DO NOT SWIM\"." << endl;
 					cout << "Do you take the risk and jump into the lake or do you go back east to the street." << endl;
 				}
 				else {
@@ -138,9 +139,10 @@ int main() {
 				}
 				else {
 					cout << "____________________________________________________________________________" << endl;
-					cout << "You swim with new found confidence. Your the king of this lake now." << endl;
+					cout << "You swim with new found confidence and grab the golden key with your mouth. Your the king of this lake now." << endl;
 					cout << "An alligator spots you but backs down after a feirce glare from your menecing eyes." << endl;
 					cout << "You suddenly remember you don't like water and want to swim back east, toward the bench." << endl;
+					
 				}
 				moves();
 				cin >> input;
@@ -154,7 +156,7 @@ int main() {
 
 
 			case 5:
-				if (hasVisited[4] == false) {
+				if (hasVisited[5] == false) {
 					cout << "____________________________________________________________________________" << endl;
 					cout << "You jump trought the red trucks open window and are immediently hit with the smell of cigerates." << endl;
 					cout << "You notice a fish fillet with a bite taken out of it on the dashboard." << endl;
@@ -178,12 +180,20 @@ int main() {
 				cin >> input;
 				if (input == "west" || input.compare("go west") == 0)
 					room = 2;
+					hasVisited[5] = true;
 				break;
 
 
 			case 6:
 				cout << "____________________________________________________________________________" << endl;
-				cout << "you are in room 6(street 2), you can go east, north, or south" << endl;
+				cout << "As you run through the busy street, you almost get hit by a car." << endl;
+				cout << "You quickly dodge, but at the peak of your jump you see something magnificent." << endl;
+				cout << "It's a bluefin tuna wrapped in GOLD LEAVES. You see it on a tray being brought to the backroom of the fish shop up north." << endl;
+				cout << "A rock suddenly hits you, snapping you out of your daze. You see it came from the east allyway." << endl;
+				cout << "PATHS: east, north, south." << endl;
+
+
+
 				moves();
 				cin >> input;
 				if (input == "east" || input.compare("go east") == 0)
@@ -197,18 +207,25 @@ int main() {
 
 			case 7:
 				cout << "____________________________________________________________________________" << endl;
-				cout << "you are in room 7(allyway), you can go west to go back to the street, or go north into the trash can." << endl;
+				cout << "You carefully strole trough the allyway, on guard. As you walk to start to notice all the cats laying around, staring at you." << endl;
+				cout << "You suddenly feel a chill go down your spine. You snap your head ahead of you and see a greedy pair of eyes staring at you from inside a dumpster. " << endl;
+				cout << "With a loud slam the cat in the dumpster hides and closes the lid." << endl;
+				cout << "Do you go back west onto the street or go into the dumpster north of you?" << endl;
+
+
 				moves();
 				cin >> input;
 				if (input == "west" || input.compare("go west") == 0)
 					room = 6;
-				else if (input == "north" || input.compare("go north") == 0)
+				else if (input == "north" || input == "dumpster" || input.compare("go north") == 0 || input.compare("go into dumpster") == 0)
 					room = 8;
 				break;
 
 
 			case 8:
 				cout << "____________________________________________________________________________" << endl;
+				cout << "You kick a rock at lid to lift it up and jump into the dumpster." << endl;
+				cout << "To your suprise your nose was hit with the smell of citris and not trash." << endl;
 				cout << "You see a disheveled tuxedo cat sitting politely in the corner of the dumpster, staring at you." << endl;
 				cout <<"The cat gets up and starts to slowly walk to you. You get ready to attack but he suddenly stops" << endl;
 				cout << " \"You want to buy something from me ?\" " << endl;
@@ -235,8 +252,18 @@ int main() {
 
 
 			case 9:
-				cout << "____________________________________________________________________________" << endl;
-				cout << "you are in room 9(bucher), you can go south back into the street or go north into the back of the bucher room" << endl;
+				if (inventory[9] == "gold key") {
+					cout << "____________________________________________________________________________" << endl;
+					cout << "You try to calm your excitment as you try to push open the door, but realize the door won't budge. The door is locked." << endl;
+					cout << "You remember the key you grabbed from the lake and jump to the door handle, placing the key in the key hole and turing the knob." << endl;
+					cout << "The place is clear of everyone, the door must've been locked because the workers were on break." << endl;
+					cout << "It's like the lottery; samon, tuna, cod, shrimp and crab, all on ice to keep their freshness." << endl << "You waste no time stuffing your face and enjoying your prize." << endl;
+					cout << "After you eat the majority of the fish you remember about the bluefin tuna wrapped in gold flakes that was taken to the backroom." << endl << "Do you go back before your caught or do you take the risk and go north into the backroom." << endl;
+				}
+				else {
+					cout << "You try to calm your excitment as you try to push open the door, but realize the door won't budge. The door is locked." << endl;
+					cout << "YOUR DAY IS RUINED NOOOOOOOOOOOO. IF ONLY I HAD A KEY" << endl;
+				}
 				moves();
 				cin >> input;
 				if (input == "south" || input.compare("go south") == 0)
@@ -314,14 +341,14 @@ void shop() {
 void moves() {
 	cout << endl << "-------------------------------------" << endl;
 	cout << "your inventory:";
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 10; i++)
 		cout << inventory[i] << " | ";
 	cout << endl;
 	turns++;
 	cout << "you have " << 31 - turns << " minutes to get back home before you're caught" << endl;
 }
 void BattleSim() {
-	int MonsterHealth = 40; // local variale: this can only be seen and used by BattleSim
+	int MonsterHealth = 80; // local variale: this can only be seen and used by BattleSim
 	int damage;
 	int input;
 	char dummy;
@@ -332,6 +359,7 @@ void BattleSim() {
 		//monster fight section
 		if (inventory[8] == "armor") {
 			damage = rand() % 11 + 5; // monster can bite for 0-10 (+5 to make it 5-15
+			cout << "##########################################" << endl;
 			cout << "the alligator chomps at you but the armor protected you slightly. The aligator did " << damage << " dmg" << endl;
 			PlayerHealth -= damage;
 			cout << "press any key to continue........" << endl;
@@ -339,18 +367,20 @@ void BattleSim() {
 		}
 		else {
 			damage = rand() % 11 + 5; // monster can bite for 0-10 (+5 to make it 5-15
+			cout << "##########################################" << endl;
 			cout << "the alligator bites you for " << damage << " dmg" << endl;
 			PlayerHealth -= damage;
-			cout << "press any key to continue........" << endl;
-			cin >> dummy;
+			//cout << "press any key to continue........" << endl;
+			//cin >> dummy;
 		}
-		break;
+
 		cout << "press 1 to scratch it's eyes, press 2 to kick down on it's nose" << endl;
 		cin >> input;
 		switch (input) {
 		case 1:
 			//player fihts
 			damage = rand() % 10 + 5; // player swings 5-9
+			cout << "##########################################" << endl;
 			cout << "you duck under the next bite and scratch the alligator in the eyes for " << damage << " damage" << endl;
 			MonsterHealth -= damage;
 			cout << "press any key to continue........" << endl;
@@ -359,10 +389,11 @@ void BattleSim() {
 		case 2:
 			//player fihts
 			damage = rand() % 10 + 8; // player swings 8-17
+			cout << "##########################################" << endl;
 			cout << "you lift your leg up and charge your power. In one quick motion you SLAM your foot into the alligators nose for " << damage << " damage" << endl;
 			MonsterHealth -= damage;
-			cout << "press any key to continue........" << endl;
-			cin >> dummy;
+			//cout << "press any key to continue........" << endl;
+			//cin >> dummy;
 			break;
 		}
 
@@ -378,17 +409,18 @@ void BattleSim() {
 		else
 			cout << "The alligator realized he was no match for you and ran away crying" << endl;
 
-		cout << "press any key to continue........" << endl;
-		cin >> dummy;
+		//cout << "press any key to continue........" << endl;
+		//cin >> dummy;
 
 	}
 	if (PlayerHealth > 0) {
-		cout << "You won!" << endl; // place of loot after kill
+		cout << "You won!" << endl << "In your battle 4 of the fish around you died. You picked them up."<< endl << "You also swim down to grab the golden key with you mouth." << endl; // place of loot after kill
 		fish += 4;
 		inventory[3] = "half-eaten tuna";
 		inventory[4] = "half-eaten tuna";
 		inventory[5] = "half-eaten tuna";
 		inventory[6] = "half-eaten tuna";
+		inventory[9] = "gold key";
 	}
 	else
 		cout << "you lost GAME OVER" << endl;
@@ -443,7 +475,7 @@ void map() {
 			cin >> input;
 			break;
 		case 2:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -467,7 +499,7 @@ void map() {
 			cin >> input;
 			break;
 		case 3:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -491,7 +523,7 @@ void map() {
 			cin >> input;
 			break;
 		case 4:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -515,7 +547,7 @@ void map() {
 			cin >> input;
 			break;
 		case 5:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -539,7 +571,7 @@ void map() {
 			cin >> input;
 			break;
 		case 6:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -563,7 +595,7 @@ void map() {
 			cin >> input;
 			break;
 		case 7:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -587,7 +619,7 @@ void map() {
 			cin >> input;
 			break;
 		case 8:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -611,7 +643,7 @@ void map() {
 			cin >> input;
 			break;
 		case 9:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |                         |                      " << endl;
@@ -635,7 +667,7 @@ void map() {
 			cin >> input;
 			break;
 		case 10:
-			cout << endl << "                   MAP                      " << endl;
+			cout << endl << "                                         " << endl;
 			cout << "                                                                                               " << endl;
 			cout << "                      __________________________              " << endl;
 			cout << "                      |              **         |                      " << endl;

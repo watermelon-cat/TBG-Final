@@ -254,28 +254,41 @@ int main() {
 			case 9:
 				if (inventory[9] == "gold key") {
 					cout << "____________________________________________________________________________" << endl;
-					cout << "You try to calm your excitment as you try to push open the door, but realize the door won't budge. The door is locked." << endl;
+					cout << "Your rush over to the fish shop as you try to calm your excitment, pushing open the door, but realize the door won't budge. The door is locked." << endl;
 					cout << "You remember the key you grabbed from the lake and jump to the door handle, placing the key in the key hole and turing the knob." << endl;
 					cout << "The place is clear of everyone, the door must've been locked because the workers were on break." << endl;
 					cout << "It's like the lottery; samon, tuna, cod, shrimp and crab, all on ice to keep their freshness." << endl << "You waste no time stuffing your face and enjoying your prize." << endl;
 					cout << "After you eat the majority of the fish you remember about the bluefin tuna wrapped in gold flakes that was taken to the backroom." << endl << "Do you go back before your caught or do you take the risk and go north into the backroom." << endl;
+				 	if (input == "north" || input.compare("go north") == 0)
+					room = 10;
 				}
 				else {
 					cout << "You try to calm your excitment as you try to push open the door, but realize the door won't budge. The door is locked." << endl;
 					cout << "YOUR DAY IS RUINED NOOOOOOOOOOOO. IF ONLY I HAD A KEY" << endl;
+					cout << "PATHS: south" << endl;
 				}
 				moves();
 				cin >> input;
 				if (input == "south" || input.compare("go south") == 0)
 					room = 6;
-				else if (input == "north" || input.compare("go north") == 0)
-					room = 10;
 				break;
 
 
 			case 10:
-				cout << "____________________________________________________________________________" << endl;
-				cout << "you are in room 10(back room), you can go south back into the main butcher shop" << endl;
+				if (inventory[2] == "C4") {
+					cout << "____________________________________________________________________________" << endl;
+					cout << "You come face to face with a huge dimonde enforced door; You learned your lesson the first time and realize that you won't be able to open this trought normal means." << endl;
+					cout << "You grab the C4 you got from the shady cat vender and stick it onto the door." << endl;
+					cout << "3..." << endl << "2.." << endl << "1." << endl << "BOOOMMMMMMMMMMM##############" << endl;
+					cout << "The door blast open and you careful stroll in" << endl <<"That is untill you lay eyes on the masterpiece infront of you. The most expensive, luxuaeras, bluefin tuna with GOLD" << endl;
+					cout << "This is why you escaped your home plant and came to earth. To have the freedom to do ANYTHING" << endl << "You take your time, carefully and elegently eating the bluefin tuna. ALL THE WAY TO THE BONE" << endl;
+				
+				}
+				else{
+					cout << "You stide up to the door but as you near you realize you aren't equipped to open it." << endl << "If only it could just explode and slam open" <<endl;
+					cout << "PATHS: south" << endl;
+
+				}
 				moves();
 				cin >> input;
 				if (input == "south" || input.compare("go south") == 0)

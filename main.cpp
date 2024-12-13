@@ -3,7 +3,7 @@
 using namespace std;
 
 //global variables
-string inventory[10];
+string inventory[11];
 // 0 is fish from shop
 // 1 is a bat
 // 2 is C4
@@ -11,6 +11,7 @@ string inventory[10];
 // 7 is the fish from the car
 // 8 is cardboard armor
 // 9 is the golden key
+// 10 is salmon
 
 int turns = 0;
 int fish = 0;
@@ -51,6 +52,8 @@ int main() {
 		if (input == "map")
 			map();
 
+		moves();
+
 		switch (room) {
 		case 1:
 			if (hasVisited[1] == false) {
@@ -65,7 +68,7 @@ int main() {
 			}
 			else {
 				cout << "You stride back into the house." << endl << "After taking a quick power nap your full of energy again." << endl << "PATHS: NORTH" << endl;
-				moves();
+				//moves();
 			}
 			// getline lets you handle user input with spaces (like "get sword")
 			getline(cin, input);
@@ -87,7 +90,7 @@ int main() {
 			cout << "You notice the street continues north. East, you see a red truck with the window rolled down, you smell something fishy coming from it" << endl;
 			cout << "To the west to see a bench litered with fishing equipment" << endl;
 			cout << "PATHS: west, north, east, south" << endl;
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "west" || input.compare("go west") == 0)
 				room = 3;
@@ -117,7 +120,7 @@ int main() {
 				cout << "Your sense of adventure is not yet quenched. You should go east back into the street." << endl;
 
 			}
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "west" || input == "yes" || input.compare("go west") == 0) {
 				room = 4;
@@ -145,19 +148,20 @@ int main() {
 					hasVisited[4] = true;
 				}
 				if (input == "east" || input.compare("go east") == 0 || input.compare("swim back") == 0) {
+					cout << "____________________________________________________________________________" << endl;
 					cout << "You try to swim away but the alligator is right behind immidently. He opens his mouth to chomp down on you." << endl;
-					cout << "CHOMP......" << endl;
-					cout << "You suddenly wake up, your owner eating corndog right next to you." << endl << "Your whole adventure had been a dream, your glab that you didn't really get eaten by an alligator" << endl;
+					cout << "CHOMP......" << endl << "GAME OVER" << endl;
+					cout << "You suddenly wake up, your owner eating corndog right next to you." << endl << "Your whole adventure had been a dream, your glab that you didn't really get eaten by an alligator";
 					game = false;
 				}
 			else {
 				cout << "____________________________________________________________________________" << endl;
-				cout << "You swim with new found confidence and grab the golden key with your mouth. Your the king of this lake now." << endl;
+				cout << "You swim with new found confidence. Your the king of this lake now." << endl;
 				cout << "An alligator spots you but backs down after a feirce glare from your menecing eyes." << endl;
 				cout << "You suddenly remember you don't like water and want to swim back east, toward the bench." << endl;
 			}
 			}
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "east" || input.compare("go east") == 0)
 				room = 3;
@@ -170,7 +174,7 @@ int main() {
 				cout << "You jump trought the red trucks open window and are immediently hit with the smell of cigerates." << endl;
 				cout << "In the back seat you see a piece of cardboard. It reminds you of your home planet were warriors use a similar material as armor" << endl;
 				cout << "PATHS:grab cardboard, go west." << endl;
-				moves();
+				//moves();
 				getline(cin, input);
 				if (input == "cardboard" || input.compare("grab cardboard") == 0) {
 					inventory[8] = "cardboard armor";
@@ -214,7 +218,7 @@ int main() {
 			}
 
 
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "east" || input.compare("go east") == 0) {
 				room = 7;
@@ -247,7 +251,7 @@ int main() {
 
 			}
 
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "west" || input.compare("go west") == 0)
 				room = 6;
@@ -295,7 +299,7 @@ int main() {
 				cout << "You can talk to the cat or go south back into the alleyway." << endl;
 
 			}
-			moves();
+			//moves();
 
 			getline(cin, input);
 			if (input == "south" || input.compare("go south") == 0) {
@@ -320,16 +324,21 @@ int main() {
 				getline(cin, input);
 				if (input == "north" || input.compare("go north") == 0)
 					room = 10;
+				if (input == "south" || input.compare("go south") == 0)
+					room = 6;
 			}
 			else {
 				cout << "You try to calm your excitment as you try to push open the door, but realize the door won't budge. The door is locked." << endl;
 				cout << "YOUR DAY IS RUINED NOOOOOOOOOOOO. IF ONLY I HAD A KEY" << endl;
 				cout << "PATHS: south" << endl;
+				getline(cin, input);
+				if (input == "south" || input.compare("go south") == 0)
+					room = 6;
 			}
-			moves();
-			getline(cin, input);
-			if (input == "south" || input.compare("go south") == 0)
-				room = 6;
+			//moves();
+			//getline(cin, input);
+			//if (input == "south" || input.compare("go south") == 0)
+				//room = 6;
 			break;
 
 
@@ -341,14 +350,22 @@ int main() {
 				cout << "3..." << endl << "2.." << endl << "1." << endl << "BOOOMMMMMMMMMMM##############" << endl;
 				cout << "The door blast open and you careful stroll in" << endl << "That is untill you lay eyes on the masterpiece infront of you. The most expensive, luxuaeras, bluefin tuna with GOLD" << endl;
 				cout << "This is why you escaped your home plant and came to earth. To have the freedom to do ANYTHING" << endl << "You take your time, carefully and elegently eating the bluefin tuna. ALL THE WAY TO THE BONE" << endl;
-
+				cout << "    /\\_____/\\" << endl;
+				cout << "   /  o   o  \\" << endl;
+				cout << "  ( ==  ^  == )" << endl;
+				cout << "   )         (" << endl;
+				cout << "  (           )" << endl;
+				cout << " ( (  )   (  ) )" << endl;
+				cout << "(__(__)___(__)__)" << endl;
+				cout << "You are very satisfied with your meal and your adventure. You slowly get back up and stride back home; you quenched your adventurous thirst for now." << endl << "----------------VICTORY--------------";
+				game = false;
 			}
 			else {
 				cout << "You stide up to the door but as you near you realize you aren't equipped to open it." << endl << "If only it could just explode and slam open" << endl;
 				cout << "PATHS: south" << endl;
 
 			}
-			moves();
+			//moves();
 			getline(cin, input);
 			if (input == "south" || input.compare("go south") == 0)
 				room = 9;
@@ -365,6 +382,7 @@ int main() {
 		cout << "\"What are you doing here?\" Your owner caught you. They pick you up and take you home." << endl;
 		cout << "You were unable to eat the food you fought so hard for ):" << endl;
 	}
+	cout << endl << "------------------------------GAME OVER---------------------------" << endl;
 	cout << endl << "-------------------THANK YOU FOR PLAYING MY GAME-------------------" << endl;
 }// end main loop
 
@@ -372,10 +390,10 @@ void shop() {
 	char userinput = 'p';
 	cout << endl << endl << "-------------------------------------------------------------------------" << endl;
 	cout << endl << "WELCOME TO MY SHOP" << endl;
-	cout << "YOU HAVE " << fish << " FISH" << endl;
 	cout << endl << "-------------------------------------------------------------------------" << endl;
 	while (userinput != 'q') {
-		cout << "press (f) to buy 1 fish for 2 fishes" << endl;
+		cout << "YOU HAVE " << fish << " FISH" << endl;
+		cout << "press (f) to buy sunglasses for 1 fish" << endl;
 		cout << "press (b) to buy a bat for 3 fish" << endl;
 		cout << "press (c) to buy a piece of C4(5 Fish)" << endl;
 		cout << "press (q) to quit" << endl;
@@ -395,6 +413,7 @@ void shop() {
 			if (fish >= 3) {
 				cout << "you bought a bat!" << endl;
 				inventory[1] = "bat";
+				fish -= 3;
 			}
 			else
 				cout << "you don't have enough fish" << endl;
@@ -402,7 +421,8 @@ void shop() {
 		case 'c':
 			if (fish >= 5) {
 				cout << "you got 1 piece of C4" << endl;
-				inventory[2] = "C4 ";
+				inventory[2] = "C4";
+				fish -= 5;
 			}
 			else
 				cout << "you don't have enough fish" << endl;
@@ -415,11 +435,11 @@ void shop() {
 void moves() {
 	cout << endl << "-------------------------------------" << endl;
 	cout << "your inventory:";
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 11; i++)
 		cout << inventory[i] << " | ";
 	cout << endl;
 	turns++;
-	cout << "you have " << 26 - turns << " minutes to get back home before you're caught" << endl;
+	cout << "you have " << 26 - turns << " minutes to get back home before you're caught" << endl << "Type 'help' for help menu | Type 'map' for a map" << endl;
 }
 void BattleSim() {
 	int MonsterHealth = 40; // local variale: this can only be seen and used by BattleSim
@@ -490,6 +510,7 @@ void BattleSim() {
 	}
 	if (PlayerHealth > 0) {
 		cout << "You won!" << endl << "You swim down to grab the golden key and see that the alligator spit out 5 fish when you defeated him." << endl;
+		inventory[9] = "gold key";
 		cout << "Do you pick them up? (y/n)" << endl;
 		cin >> dummy;
 		if (dummy == 'y') {
@@ -498,8 +519,8 @@ void BattleSim() {
 			inventory[3] = "half-eaten tuna";
 			inventory[4] = "cod";
 			inventory[5] = "catfish";
-			inventory[6] = "bass";
-			inventory[9] = "salmon";
+			inventory[6] = "salmon";
+			inventory[10] = "salmon";
 		}
 		else {
 			cout << "You decide not the pick up the fish and swim back up victorious" << endl;
@@ -544,13 +565,13 @@ void map() {
 			cout << "                                       |       |                     |        " << endl;
 			cout << "__________                             |       |_____________________|      " << endl;
 			cout << "          \\_________                   |       |                   " << endl;
-			cout << "                     \\ ________________|_______|                       " << endl;
+			cout << "  ~~~~~       ~~     \\ ________________|_______|                       " << endl;
 			cout << "                                 |      |       |___                " << endl;
-			cout << "                                 |      |       |   |                      " << endl;
-			cout << "                                 |      |       |___|                       " << endl;
-			cout << "                                 |______|_______|                        " << endl;
-			cout << "                              ___|        ______                          " << endl;
-			cout << "                      _______/         //   *   \\\\                       " << endl;
+			cout << "       ~~~                ~~     |      |       |   |                      " << endl;
+			cout << "                ~~~              |      |       |___|                       " << endl;
+			cout << "     ~~    ~~          ~~        |______|_______|                        " << endl;
+			cout << "                    ~~~~~     ___|        ______                          " << endl;
+			cout << "             ~~~      _______/         //   *   \\\\                       " << endl;
 			cout << "       ______________/                //_________\\\\                   " << endl;
 			cout << "______/                              //|   ___    |\\\\                            " << endl;
 			cout << "                                       |   |  |   |               " << endl;

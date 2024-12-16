@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string> // needed for getline and compare
+#include<Windows.h>
 using namespace std;
 
 //global variables
@@ -30,8 +31,11 @@ void map();
 
 int main() {
 
+	
+
 	srand(time(NULL)); // seeds rand() *keep this at the top of main
 	string input = "beef"; //dummy value
+	system("color 8E");
 	cout << endl << "____________________________________________________________________________" << endl << endl;
 	cout << "                           WELCOME TO CAT QUEST" << endl << endl;
 	cout << "                          _..---...,\"\"-._     ,/}/)" << endl;
@@ -43,6 +47,9 @@ int main() {
 	cout << "                   \`. \`-\' /-._)))      \`-._)))" << endl;
 	cout << "                     \`...\'         " << endl;
 	cout << "____________________________________________________________________________" << endl;
+
+	//PlaySound(TEXT("cottagecore.wav"), NULL, SND_FILENAME);
+	PlaySound(TEXT("elevator.wav"), NULL, SND_FILENAME);
 
 	while (input != "quit" && turns != 25 && game == true) { // game loop
 		//STUFF HERE RUNS EVERY TURN
@@ -107,6 +114,7 @@ int main() {
 
 		case 3:
 			if (inventory[9] != "gold key") {
+				system("color 8E");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "As you near the bench you notice a gigantic lake further west." << endl;
 				cout << "You decide to climb the bench to get a better view of the lake and notice a shine in the water about 10 meters out." << endl;
@@ -114,6 +122,7 @@ int main() {
 				cout << "Do you take the risk and jump west into the lake or do you go back east to the street." << endl;
 			}
 			else {
+				system("color 8E");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You admire the nice view of the lake and the city behind it on the bench." << endl;
 				cout << " You don't notice anything shiny in the lake anymore and are saddened by it." << endl;
@@ -133,6 +142,7 @@ int main() {
 
 		case 4:
 			if (hasVisited[4] == false) {
+				system("color 1F");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You're a cat, known for your agility, so you decide to go into the lake." << endl;
 				cout << "You take a big breath and steel your nerves. You do a front flip into the lake with STYLE." << endl;
@@ -155,6 +165,7 @@ int main() {
 					game = false;
 				}
 			else {
+				system("color 3F");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You swim with new found confidence. Your the king of this lake now." << endl;
 				cout << "An alligator spots you but backs down after a feirce glare from your menecing eyes." << endl;
@@ -191,14 +202,17 @@ int main() {
 							break;
 					}
 				}
+				if (input == "west" || input.compare("go west") == 0)
+					room = 2;
+				hasVisited[5] = true;
 			}
 			else {
 				cout << "You jump back into the truck put don't see anything interesting. You want to go west, back into the street." << endl;
+				getline(cin, input);
+				if (input == "west" || input.compare("go west") == 0)
+					room = 2;
+				hasVisited[5] = true;
 			}
-			getline(cin, input);
-			if (input == "west" || input.compare("go west") == 0)
-				room = 2;
-			hasVisited[5] = true;
 			break;
 
 
@@ -262,6 +276,7 @@ int main() {
 
 		case 8:
 			if (hasVisited[8] == false) {
+				system("color 2F");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You kick a rock at lid to lift it up and jump into the dumpster." << endl;
 				cout << "To your suprise your nose was hit with the smell of citris and not trash." << endl;
@@ -282,6 +297,7 @@ int main() {
 				cout << "You can talk to the cat or go south back into the alleyway." << endl;
 			}
 			else {
+				system("color 2F");
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You jump back into dumpster. Looking for a certein greedy cat." << endl;
 				cout << " \"Welcome, what would you like to buy?\" " << endl;
@@ -305,6 +321,8 @@ int main() {
 			if (input == "south" || input.compare("go south") == 0) {
 				room = 7;
 				hasVisited[8] = true;
+				system("color 8E");
+
 			}
 			else if (input == "talk" || input.compare("talk to cat") == 0) {
 				shop();
@@ -347,7 +365,10 @@ int main() {
 				cout << "____________________________________________________________________________" << endl;
 				cout << "You come face to face with a huge dimonde enforced door; You learned your lesson the first time and realize that you won't be able to open this trought normal means." << endl;
 				cout << "You grab the C4 you got from the shady cat vender and stick it onto the door." << endl;
+				system("color 4F");
 				cout << "3..." << endl << "2.." << endl << "1." << endl << "BOOOMMMMMMMMMMM##############" << endl;
+				system("pause");
+				system("color 6F");
 				cout << "The door blast open and you careful stroll in" << endl << "That is untill you lay eyes on the masterpiece infront of you. The most expensive, luxuaeras, bluefin tuna with GOLD" << endl;
 				cout << "This is why you escaped your home plant and came to earth. To have the freedom to do ANYTHING" << endl << "You take your time, carefully and elegently eating the bluefin tuna. ALL THE WAY TO THE BONE" << endl;
 				cout << "    /\\_____/\\" << endl;
@@ -358,6 +379,7 @@ int main() {
 				cout << " ( (  )   (  ) )" << endl;
 				cout << "(__(__)___(__)__)" << endl;
 				cout << "You are very satisfied with your meal and your adventure. You slowly get back up and stride back home; you quenched your adventurous thirst for now." << endl << "----------------VICTORY--------------";
+				PlaySound(TEXT("cottagecore.wav"), NULL, SND_FILENAME);
 				game = false;
 			}
 			else {
@@ -387,6 +409,7 @@ int main() {
 }// end main loop
 
 void shop() {
+	system("color 5F");
 	char userinput = 'p';
 	cout << endl << endl << "-------------------------------------------------------------------------" << endl;
 	cout << endl << "WELCOME TO MY SHOP" << endl;
@@ -446,6 +469,7 @@ void BattleSim() {
 	int damage;
 	int input;
 	char dummy;
+	system("color 4F");
 	cout << endl << endl << "------------------ BATTLE BEGINS------------------" << endl;
 	cout << "The alligator rushes quickly at you." << endl;
 	while (PlayerHealth > 0 && MonsterHealth > 0) { // battle  loop
@@ -509,6 +533,7 @@ void BattleSim() {
 
 	}
 	if (PlayerHealth > 0) {
+		system("color E8");
 		cout << "You won!" << endl << "You swim down to grab the golden key and see that the alligator spit out 5 fish when you defeated him." << endl;
 		inventory[9] = "gold key";
 		cout << "Do you pick them up? (y/n)" << endl;
@@ -760,7 +785,7 @@ void map() {
 			cout << "                     \\ ________________|_______|                       " << endl;
 			cout << "                                 |      |       |___                " << endl;
 			cout << "                                 |      |       |   |                      " << endl;
-			cout << "                    **           |      |       |___|                       " << endl;
+			cout << "                                 |      |       |___|                       " << endl;
 			cout << "                                 |______|_______|                        " << endl;
 			cout << "                              ___|        ______                          " << endl;
 			cout << "                      _______/         //       \\\\                       " << endl;
@@ -784,7 +809,7 @@ void map() {
 			cout << "                     \\ ________________|_______|                       " << endl;
 			cout << "                                 |      |       |___                " << endl;
 			cout << "                                 |      |       |   |                      " << endl;
-			cout << "                    **           |      |       |___|                       " << endl;
+			cout << "                                 |      |       |___|                       " << endl;
 			cout << "                                 |______|_______|                        " << endl;
 			cout << "                              ___|        ______                          " << endl;
 			cout << "                      _______/         //       \\\\                       " << endl;
